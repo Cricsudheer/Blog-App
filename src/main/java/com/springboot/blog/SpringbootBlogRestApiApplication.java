@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.ui.ModelMap;
 
 @SpringBootApplication
-public class SpringbootBlogRestApiApplication implements CommandLineRunner {
+public class  SpringbootBlogRestApiApplication implements CommandLineRunner {
 
 
 

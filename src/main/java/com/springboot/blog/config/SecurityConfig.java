@@ -57,7 +57,8 @@ public class SecurityConfig {
                         autorize.requestMatchers(HttpMethod.GET,"/api/**" ).permitAll()
                                 .requestMatchers(HttpMethod.GET,"/api/categories/**" ).permitAll()
                                 .requestMatchers("/api/auth/**").permitAll()
-                                .anyRequest().authenticated()
+//                                .requestMatchers("/swagger-ui.html/**").permitAll()
+                                .anyRequest().permitAll()
                 ).exceptionHandling(exception-> exception.authenticationEntryPoint(authenticationEntryPoint)).sessionManagement(
                         session-> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 );

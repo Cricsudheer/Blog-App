@@ -3,6 +3,7 @@ package com.springboot.blog.controller;
 import com.springboot.blog.entity.Category;
 import com.springboot.blog.payload.CategoryDto;
 import com.springboot.blog.service.CategoryService;
+import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -19,24 +20,29 @@ public class CategoryController {
         this.categoryService = categoryService;
     }
     // add category rest api
+    @Operation(summary = "Add New Category")
     @PostMapping
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<CategoryDto> addCategory(@RequestBody CategoryDto categoryDto){
         CategoryDto categoryDto1 = categoryService.addCategory(categoryDto);
         return new ResponseEntity<>(categoryDto1 , HttpStatus.CREATED);
     }
-
+    @Operation(summary = "Get Category By Id")
     @GetMapping("{id}")
 
     public ResponseEntity<CategoryDto> getCategory(@PathVariable("id") Long id){
         CategoryDto categoryDto = categoryService.getCategory(id);
         return ResponseEntity.ok(categoryDto);
     }
+
+    @Operation(summary = "Get all Categories")
     @GetMapping
     public  ResponseEntity<List<CategoryDto>> getCategories(){
         return ResponseEntity.ok(categoryService.getAllCategories());
     }
 
+
+    @Operation(summary = "Update Category")
 
     @PutMapping("{id}")
     @PreAuthorize("hasRole('ADMIN')")
